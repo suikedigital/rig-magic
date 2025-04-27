@@ -1,0 +1,16 @@
+services:
+  docs:
+    image: rig_magic_local_docs
+    container_name: rig_magic_local_docs
+    build:
+      context: .
+      dockerfile: ./compose/local/docs/Dockerfile
+    env_file:
+      - ./.envs/.local/.django
+    volumes:
+      - ./docs:/docs:z
+      - ./config:/app/config:z
+      - ./rig_magic:/app/rig_magic:z
+    ports:
+      - '9000:9000'
+    command: /start-docs
